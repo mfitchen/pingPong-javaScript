@@ -1,10 +1,10 @@
 var gulp = require('gulp');
-var utilities = require('gulp-util');
 // JavaScript build tasks go in the order concatInterface -> jsBrowserify -> minifyScripts
 var concat = require('gulp-concat');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
+var utilities = require('gulp-util');
 var del = require('del');
 var buildProduction = utilities.env.production;
 var jshint = require('gulp-jshint');
@@ -45,13 +45,13 @@ gulp.task("minifyScripts", ["jsBrowserify"], function(){
     .pipe(gulp.dest("./build/js"));
 });
 
-gulp.task("build", function(){
-  if (buildProduction) {
-    gulp.start('minifyScripts');
-  } else {
-    gulp.start('jsBrowserify');
-  }
-});
+// gulp.task("build", function(){
+//   if (buildProduction) {
+//     gulp.start('minifyScripts');
+//   } else {
+//     gulp.start('jsBrowserify');
+//   }
+// });
 
 gulp.task("clean", function(){
   return del(['build', 'tmp']);
